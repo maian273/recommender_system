@@ -1,0 +1,36 @@
+{
+    "name": "predictionio/predictionio",
+    "type": "library",
+    "description": "Apache PredictionIO API PHP Client",
+    "keywords": [
+        "predictionio",
+        "rest",
+        "restful",
+        "web service",
+        "prediction",
+        "recommendation"
+    ],
+    "homepage": "http://predictionio.apache.org",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Apache PredictionIO",
+            "email": "dev@predictionio.apache.org",
+            "homepage": "http://predictionio.apache.org"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0",
+        "guzzlehttp/guzzle": "^6.1"
+    },
+    "require-dev": {
+        "symfony/class-loader": "^2.3",
+        "phpunit/phpunit": "^5",
+        "apigen/apigen": "^4.1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "predictionio\\": "src/predictionio/"
+        }
+    }
+}

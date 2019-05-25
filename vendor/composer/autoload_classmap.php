@@ -4221,4 +4221,10 @@ return array(
     'phpDocumentor\\Reflection\\Types\\String_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/String_.php',
     'phpDocumentor\\Reflection\\Types\\This' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/This.php',
     'phpDocumentor\\Reflection\\Types\\Void_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+    'predictionio\\BaseClient' => $vendorDir . '/predictionio/predictionio/src/predictionio/BaseClient.php',
+    'predictionio\\EngineClient' => $vendorDir . '/predictionio/predictionio/src/predictionio/EngineClient.php',
+    'predictionio\\EventClient' => $vendorDir . '/predictionio/predictionio/src/predictionio/EventClient.php',
+    'predictionio\\Exporter' => $vendorDir . '/predictionio/predictionio/src/predictionio/Exporter.php',
+    'predictionio\\FileExporter' => $vendorDir . '/predictionio/predictionio/src/predictionio/FileExporter.php',
+    'predictionio\\PredictionIOAPIError' => $vendorDir . '/predictionio/predictionio/src/predictionio/PredictionIOAPIError.php',
 );

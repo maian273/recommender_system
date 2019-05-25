@@ -1,0 +1,160 @@
+/*-----------------------------------------------------------------------------
+
+REVOLUTION RESPONSIVE BASIC STYLES OF HTML DOCUMENT
+
+Screen Stylesheet
+
+version:   	1.0
+date:      	26/06/12
+author:		themepunch
+email:     	support@themepunch.com
+website:   	http://www.themepunch.com
+-----------------------------------------------------------------------------*/
+
+
+/**********************
+	-	RESET	-
+************************/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent;
+}
+
+
+/***********************
+	-	BASICS 	-
+***********************/
+html {
+	overflow-x:hidden;
+	padding: 0 !important;
+	background-image:url(../images/tiles/bgtile.jpg);
+	margin:0px !important;
+}
+
+
+
+
+
+  /*********************************************************************************************
+		-	SET THE SCREEN SIZES FOR THE BANNER IF YOU WISH TO MAKE THE BANNER RESOPONSIVE 	-
+  **********************************************************************************************/
+
+  /*	-	THE BANNER CONTAINER (Padding, Shadow, Border etc. )	-	*/
+
+  .bannercontainer {
+		padding:0px;
+		background-color:#fff;
+		width:100%;
+		position:relative;
+		position:relative;
+		margin-left:auto;
+		margin-right:auto;
+
+
+	}
+
+  .banner{
+		width:100%;
+		max-height:490px;
+		position:relative;
+		overflow:hidden;
+   }
+
+
+  /*	THE MEDIA CHOOSER TO SET DIFFERENT SIZES OF THE CONTAINER DEPENDING ON THE SCREEN SIZE    */
+   @media only screen and (min-width: 768px) and (max-width: 959px) {
+
+ 		  .banner, .bannercontainer			{	width:100%; height:395px;}
+
+
+
+
+   }
+
+   @media only screen and (min-width: 480px) and (max-width: 767px) {
+		   .banner, .bannercontainer		{	width:100%; height:250px;	}
+
+
+
+
+   }
+
+   @media only screen and (min-width: 0px) and (max-width: 479px) {
+			.banner, .bannercontainer		{	width:100%;height:166px;	}.tp-rightarrow.navbar{top:-37px!important;}.tp-leftarrow.navbar{top:-37px!important;}
+	   .single-item-title {
+		   font-size: 11px !important;
+		   margin-bottom: 5px !important;
+	   }
+	   .single-item-price {
+		   font-size: 11px !important;
+		   color: #000 !important;
+	   }
+	   .single-item-header a img {
+		   height: 125px;
+	   }
+	   .add-to-cart i {
+		   font-size: 15px;
+	   }
+	   .main-menu ul {
+		   width: 100%;
+		   background: #fff;
+	   }
+	   .main-menu ul li.active> a, .main-menu ul li.hover> a{background:#3a5c83; color:white!important;}
+	   .sub-menu li.active, .children li.active{background:#3a5c83; color:white!important;}
+	   .main-menu ul li a{color:black!important; padding-left: 20px; font-size: 14px}
+	   .main-menu ul li.visited a {
+		   color: white!important;
+	   }
+	   .auto-width-left {
+		   width: 50% !important;
+	   }
+	   .auto-width-right {
+		   width: 50% !important;
+	   }
+	   .beta-btn.primary {
+		   padding: 3.5px 3px !important;
+	   }
+	   .add-to-cart {
+		   height: 22px !important;
+		   width: 25px !important;
+	   }
+	   .add-to-cart i {
+		   font-size: 13px !important;
+		   line-height: 19px !important;
+	   }
+	   .so-luong{
+		   width: 37px !important;
+		   height: 23px !important;
+	   }
+
+
+   }
+.fixNav{
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100000000;
+}
+.cart-body{
+	z-index:999;
+}
+.inner-header{
+	background-color: #ffffff
+}
+.inner-title,.beta-breadcrumb, .beta-breadcrumb a{
+	color: black
+}
+.main-menu>ul.l-inline> li> a{
+	/*color: #fff;*/
+	padding: 10px 35px
+}
+.so-luong{
+	width: 70px;height: 34px
+}
+
+
+
+
+
+
+

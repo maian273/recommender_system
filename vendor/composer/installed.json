@@ -3192,6 +3192,60 @@
         "abandoned": true
     },
     {
+        "name": "predictionio/predictionio",
+        "version": "v0.13.0",
+        "version_normalized": "0.13.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/apache/predictionio-sdk-php.git",
+            "reference": "de58c85bfcf07c82d1f57c33221fa7dae998a34c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/apache/predictionio-sdk-php/zipball/de58c85bfcf07c82d1f57c33221fa7dae998a34c",
+            "reference": "de58c85bfcf07c82d1f57c33221fa7dae998a34c",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/guzzle": "^6.1",
+            "php": ">=5.6.0"
+        },
+        "require-dev": {
+            "apigen/apigen": "^4.1.2",
+            "phpunit/phpunit": "^5",
+            "symfony/class-loader": "^2.3"
+        },
+        "time": "2018-09-13T22:37:18+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "predictionio\\": "src/predictionio/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Apache PredictionIO",
+                "email": "dev@predictionio.apache.org",
+                "homepage": "http://predictionio.apache.org"
+            }
+        ],
+        "description": "Apache PredictionIO API PHP Client",
+        "homepage": "http://predictionio.apache.org",
+        "keywords": [
+            "prediction",
+            "predictionio",
+            "recommendation",
+            "rest",
+            "restful",
+            "web service"
+        ]
+    },
+    {
         "name": "psr/container",
         "version": "1.0.0",
         "version_normalized": "1.0.0.0",

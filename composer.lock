@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aea2965e6db6e60506bf2f964eac8da6",
+    "content-hash": "6428573a71f62737d5ce1ce462d53a73",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -2055,6 +2055,58 @@
                 "random"
             ],
             "time": "2018-07-02T15:55:56+00:00"
+        },
+        {
+            "name": "predictionio/predictionio",
+            "version": "v0.13.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apache/predictionio-sdk-php.git",
+                "reference": "de58c85bfcf07c82d1f57c33221fa7dae998a34c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apache/predictionio-sdk-php/zipball/de58c85bfcf07c82d1f57c33221fa7dae998a34c",
+                "reference": "de58c85bfcf07c82d1f57c33221fa7dae998a34c",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.1",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "apigen/apigen": "^4.1.2",
+                "phpunit/phpunit": "^5",
+                "symfony/class-loader": "^2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "predictionio\\": "src/predictionio/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Apache PredictionIO",
+                    "email": "dev@predictionio.apache.org",
+                    "homepage": "http://predictionio.apache.org"
+                }
+            ],
+            "description": "Apache PredictionIO API PHP Client",
+            "homepage": "http://predictionio.apache.org",
+            "keywords": [
+                "prediction",
+                "predictionio",
+                "recommendation",
+                "rest",
+                "restful",
+                "web service"
+            ],
+            "time": "2018-09-13T22:37:18+00:00"
         },
         {
             "name": "psr/container",

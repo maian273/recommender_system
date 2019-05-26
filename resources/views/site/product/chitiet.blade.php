@@ -48,6 +48,27 @@
                         </div>
 
                         @if(Auth::user())
+                            @if($checkNotRated)
+                            <div class="well">
+                                <h4>Đánh giá sản phẩm<span class="glyphicon glyphicon-pencil"></span></h4>
+                                <form action="rating/{{$product->id}}" role="form" method="post">
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                    <div class="rate">
+                                        <input type="radio" id="star5" name="rate" value="5" />
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" id="star4" name="rate" value="4" />
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" name="rate" value="3" />
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" name="rate" value="2" />
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" name="rate" value="1" />
+                                        <label for="star1" title="text">1 star</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Gửi</button>
+                                </form>
+                            </div>
+                            @endif
                             <div class="well">
                                 @if(session('message'))
                                     <div class="alert alert-success">

@@ -9,6 +9,9 @@ use App\Silde;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use predictionio\EventClient;
+use predictionio\EngineClient;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -78,7 +81,39 @@ class HomeController extends Controller
     //
     public function getSanPham($id){
         $product = Product::find($id);
-        $userId = Auth::user()->id;
+        $checkNotRated = true;
+        if (Auth::check()) {
+           $userId = Auth::user()->id;
+           $accessKey = 'I-Jma9h9LaDSC0FxHBblpUnoKmJgzwye-OOcU3WKxRLlYyoSuqlme7iSpp-1pv48';
+           $client = new EventClient($accessKey, 'http://localhost:7070'); //Event Server 
+           $client->createEvent([
+                'event' => 'view',
+                'entityType' => 'user',
+                'entityId' => $userId,
+                'targetEntityType' => 'item',
+                'targetEntityId' => $id,
+                'eventTime' => Carbon::now()->toIso8601String()
+            ]);
+           if ($product->ratings){
+                $rated = $product->ratings->where('user_id', '=', $userId)->toArray();
+                if (!empty($rated)){
+                    $checkNotRated = false;
+                }
+           }
+            $engineClient = new EngineClient('http://localhost:8000');
+            $suggestItems = $engineClient->sendQuery(array('user' => $userId, 'num' => 8)); // Submit user
+            $itemArr = [];
+            if (!empty($suggestItems)) {
+                $items = $suggestItems['itemScores'];
+                if (!empty($items)) {
+                    foreach ($items as $item) {
+                        $itemArr[] = $item['item'];
+                    }
+                }
+            }
+            $suggests = Product::whereIn('id', $itemArr)->get();
+            dd($suggests);
+        }
         $new_product = Product::where('new',0)->take(4)->get();
         $bestsell = DB::table('order_detail')
             ->join('products','products.id', '=', 'order_detail.id_product')
@@ -93,6 +128,7 @@ class HomeController extends Controller
             'sanphamtt' => $sanphamtt,
             'new_product' => $new_product,
             'bestsell' => $bestsell,
+            'checkNotRated'=> $checkNotRated
         ]);
     }
     //

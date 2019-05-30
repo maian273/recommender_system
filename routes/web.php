@@ -50,6 +50,7 @@ Route::post('lienhe','HomeController@postLienHe');
 /* Comment */
 
 Route::post('comment/{product_id}','CommentController@create');
+Route::post('rating/{product_id}','RatingController@create');
 
 //route for admin
 Route::group(['prefix' => 'admin','middleware' => 'admin_login'],function (){

@@ -147,6 +147,20 @@
                                                 <span class="flash-sale">{{number_format($row->promotion_price)}} VNĐ</span>
                                             </p>
                                         </div>
+                                        <div>
+                                            <ul class="list-inline row">
+                                                <li class="col-6">
+                                                    <span>{{number_format($row->rating_point)}}</span>
+                                                    <i class="fa fa-star" style="color: yellow" aria-hidden="true"></i>
+                                                    {{--<svg class="rate-and-comment" src="source/image/thumbs-up.svg">--}}
+                                                    <span>({{$row->rating_quantity}})</span>
+                                                </li>
+                                                <li class="col-6">
+                                                    <i class="fa fa-comments-o" style="color: #0e76a8" aria-hidden="true"></i>
+                                                    <span>({{$row->comment_quantity}})</span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                         <div class="single-item-caption">
                                             <a class="add-to-cart pull-left"  product_id="{{$row->id}}" ><i class="fa fa-shopping-cart"></i></a>
                                             <a class="beta-btn primary" href="{{route('chitiet',['id' => $row->id ])}}">Details <i class="fa fa-chevron-right"></i></a>
@@ -197,6 +211,20 @@
                                                         <span class="flash-sale">{{number_format($row->promotion_price)}} VNĐ</span>
                                                     </p>
                                                 @endif
+                                            </div>
+                                            <div>
+                                                <ul class="list-inline row">
+                                                    <li class="col-6">
+                                                        <span>{{number_format($row->rating_point)}}</span>
+                                                        <i class="fa fa-star" style="color: yellow" aria-hidden="true"></i>
+                                                        {{--<svg class="rate-and-comment" src="source/image/thumbs-up.svg">--}}
+                                                        <span>({{$row->rating_quantity}})</span>
+                                                    </li>
+                                                    <li class="col-6">
+                                                        <i class="fa fa-comments-o" style="color: #0e76a8" aria-hidden="true"></i>
+                                                        <span>({{$row->comment_quantity}})</span>
+                                                    </li>
+                                                </ul>
                                             </div>
                                             <div class="single-item-caption">
                                                 <a class="add-to-cart pull-left"  product_id="{{$row->id}}" ><i class="fa fa-shopping-cart"></i></a>

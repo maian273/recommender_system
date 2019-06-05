@@ -1,13 +1,17 @@
 <div id="header">
     <div class="header-top">
         <div class="container">
-            <div class="pull-left auto-width-left">
-                <ul class="top-menu menu-beta l-inline">
-                    <li><a style="text-decoration: none"><i class="fa fa-home"></i> Trường ĐHBKHN</a></li>
-                    <li><a style="text-decoration: none"><i class="fa fa-phone"></i> 0357 831 525 </a></li>
-                </ul>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="contactinfo">
+                        <ul class="nav nav-pills">
+                            <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="pull-right auto-width-right">
+            <!-- <div class="pull-right auto-width-right">
                 <ul class="top-details menu-beta l-inline">
                     @if(Auth::check())
                     <li><a href="{{route('thaydoitk')}}" id="user"><i class="fa fa-user"></i>{{(Auth::user())->full_name}}</a></li>
@@ -17,15 +21,38 @@
                         <li><a href="{{route('dangnhap')}}">Đăng nhập</a></li>
                     @endif
                 </ul>
-            </div>
+            </div> -->
             <div class="clearfix"></div>
         </div> <!-- .container -->
     </div> <!-- .header-top -->
+
+    <div class="header-middle"><!--header-middle-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="logo pull-left">
+                        <a href="{{route('trangchu')}}"><img src="images/home/logo.png" alt="" /></a>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="shop-menu pull-right">
+                        <ul class="nav navbar-nav">
+                            @if(Auth::check())
+                            <li><a href="{{route('thaydoitk')}}"><i class="fa fa-user"></i>{{(Auth::user())->full_name}}</a></li>
+                            <li><a href="{{route('dangxuat')}}"><i class="fa fa-crosshairs"></i>Đăng xuất</a></li>
+                            @else
+                            <li><a href="{{route('dangnhap')}}"><i class="fa fa-lock"></i>Đăng nhập</a></li>
+                            <li><a href="{{route('dangky')}}"><i class="fa fa-user"></i>Đăng ký</a></li>
+                            @endif
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/header-middle-->
+
     <div class="header-body">
         <div class="container beta-relative">
-            <div class="pull-left">
-                <a href="index" id="logo"><img style="opacity: 1; width: 150px; height: 60px;" src="source/image/logo.png" alt=""></a>
-            </div>
             <div class="pull-right beta-components space-left ov">
                 <div class="space10">&nbsp;</div>
                 <div class="beta-comp">
@@ -44,7 +71,8 @@
             <div class="clearfix"></div>
         </div> <!-- .container -->
     </div> <!-- .header-body -->
-    <div class="header-bottom" style="background-color: #0277b8;">
+    
+    <div class="header-bottom" style="background-color: #f7a93f;">
         <div class="container">
             <a class="visible-xs beta-menu-toggle pull-right" href="#"><span class='beta-menu-toggle-text white'>Menu</span></a>
             <div class="visible-xs clearfix"></div>

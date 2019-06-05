@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Silde;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -10,7 +10,7 @@ class SlideController extends Controller
 {
     //hiển thị danh sách slide
     public function view(){
-        $slide = Silde::all();
+        $slide = Slide::all();
         return view('admin.slide.view',compact('slide'));
     }
     //hiển thị form thêm slide
@@ -24,7 +24,7 @@ class SlideController extends Controller
 //        ],[
 //            'param_name.name' => 'Tên danh mục đã tồn tại'
 //        ]);
-        $slide = new Silde();
+        $slide = new Slide();
         $file = $request->file('image');
         $duoi = $file->getClientOriginalExtension();
         if ($duoi != 'jpg' && $duoi != 'png') {
@@ -42,13 +42,13 @@ class SlideController extends Controller
     }
     //hiển thị form sửa thông tin danh muc
     public function edit($id){
-        $slide = Silde::find($id);
+        $slide = Slide::find($id);
         if(!$slide) return view('admin.product.error');
         return view('admin.slide.edit',compact('slide'));
     }
     //xử lý sửa thông tin danh muc
     public function postEdit($id,Request $request){
-        $slide = Silde::find($id);
+        $slide = Slide::find($id);
         if($request->hasFile('image')){
             $file = $request->file('image');
             $duoi = $file->getClientOriginalExtension();
@@ -70,7 +70,7 @@ class SlideController extends Controller
     }
     //xóa danh muc
     public function delete($id){
-        $slide = Silde::find($id);
+        $slide = Slide::find($id);
         if(!$slide) return view('admin.product.error');
         $slide->delete();
         return redirect('admin/slide/view')->with('thongbao','Xóa slide thành công');

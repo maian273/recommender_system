@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Order;
-use App\OrderDetail;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -12,10 +12,15 @@ class OrderController extends Controller
 {
     //
     public function view(){
-        $orders = DB::table('order_detail')->join('products','products.id','order_detail.id_product')
-            ->join('orders','orders.id','order_detail.id_order')
-            ->selectRaw('products.id as id_product,products.*,order_detail.id as id_order,order_detail.*, orders.status as status');
-        //var_dump($order->get());
+        $orderDetails = OrderDetail::all()->toArray();
+        $orders = array();
+        foreach ($orderDetails as $key => $orderDetail) {
+            $orders[$key]['id_product'] = $orderDetail['id_product'];
+        }
+        // $orders = DB::table('order_detail')->join('products','products.id','order_detail.id_product')
+        //     ->join('orders','orders.id','order_detail.id_order')
+        //     ->selectRaw('products.id as id_product,products.*,order_detail.id as id_order,order_detail.*, orders.status as status');
+        // //var_dump($order->get());
         $total = count($orders->get());
         $orders = $orders->orderBy('order_detail.id', 'DESC')->paginate(10);
         return view('admin.order.view',[

@@ -16,12 +16,12 @@ Route::get('/', function () {
 });
 Route::get('index','HomeController@index')->name('trangchu');
 Route::get('/','HomeController@index')->name('trangchu');
-Route::get('{id}/loaisp','HomeController@getLoaiSP')->name('loaisp');
-Route::get('{id}/chitiet','HomeController@getSanPham')->name('chitiet');
+Route::get('{id}/loaisp','ProductController@getProductType')->name('loaisp');
+Route::get('{id}/chitiet','ProductController@getDetailProduct')->name('chitiet');
 
-Route::get('gioithieu','HomeController@getGioiThieu')->name('gioithieu');
+Route::get('gioithieu','HomeController@getAbout')->name('gioithieu');
 Route::group(['middleware' => 'check_login'],function (){
-    Route::get('dang-nhap','UserController@getDangNhap')->name('dangnhap');
+    Route::get('dang-nhap','UserController@getLogin')->name('dangnhap');
     Route::get('dang-ky','UserController@getDangKy')->name('dangky');
 });
 Route::get('{id}/{value}/add-to-cart','CartController@add')->name('add_to_cart');
@@ -32,20 +32,20 @@ Route::get('{id}/{value}/update-cart','CartController@update');
 Route::get('{id}/delete-cart','CartController@delete');
 
 
-Route::post('dang-nhap','UserController@postDangNhap');
-Route::get('dang-xuat','UserController@getDangXuat')->name('dangxuat');
+Route::post('dang-nhap','UserController@postLogin');
+Route::get('dang-xuat','UserController@getLogout')->name('dangxuat');
 Route::group(['middleware' => 'check_login1'],function (){
-    Route::get('thay-doi-tai-khoan','UserController@getThayDoiTK')->name('thaydoitk');
+    Route::get('thay-doi-tai-khoan','UserController@getChangeAcc')->name('thaydoitk');
     Route::get('dat-hang','OrderController@getOrder');
 });
-Route::post('dang-ky','UserController@postDangKy');
+Route::post('dang-ky','UserController@postRegister');
 Route::post('check-email','UserController@checkEmail');
-Route::post('thay-doi-tai-khoan','UserController@postThayDoiTK');
-Route::get('lichsu','UserController@getLichSu')->name('lichsu');
+Route::post('thay-doi-tai-khoan','UserController@postChangeAcc');
+Route::get('lichsu','UserController@getHistory')->name('lichsu');
 Route::get('search','HomeController@search');
-Route::get('timkiem','HomeController@timkiem')->name('search');
-Route::get('lienhe','HomeController@getLienHe')->name('lienhe');
-Route::post('lienhe','HomeController@postLienHe');
+Route::get('timkiem','HomeController@keySearch')->name('search');
+Route::get('lienhe','HomeController@getContact')->name('lienhe');
+Route::post('lienhe','HomeController@postContact');
 
 /* Comment */
 

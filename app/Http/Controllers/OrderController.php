@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
-use App\OrderDetail;
-use App\Product;
+use App\Models\Order;
+use App\Models\OrderDetail;
+use App\Models\Product;
 use App\Mail\OrderSuccess;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

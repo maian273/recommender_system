@@ -138,7 +138,7 @@
 
                                         <div class="single-item-header">
                                             <a href="{{route('chitiet',['id' => $row->id ])}}"><img src="source/image/product/{{$row->image}}"
-                                                                                                    alt="" height="200px"></a>
+                                            </a>
                                         </div>
                                         <div class="single-item-body">
                                             <p class="single-item-title">{{$row->name}}</p>
@@ -179,15 +179,15 @@
                         <div class="space50">&nbsp;</div>
 
                         <div class="beta-products-list">
-                            <h4>Các sản phẩm bạn quan tâm</h4>
+                            <h4>Các sản phẩm gợi ý</h4>
                             <div class="beta-products-details">
-                                {{--<p class="pull-left">Có {{count($count_product)}} sản phẩm</p>--}}
+                                <!-- {{--<p class="pull-left">Có {{count($count_product)}} sản phẩm</p>--}} -->
                                 <div class="clearfix"></div>
                             </div>
 
                             <div class="row">
                                 <?php $i = 0;?>
-                                @foreach($product as $row)
+                                @foreach($suggestProducts as $row)
                                     <?php $i++?>
                                     <div class="col-sm-2 col-xs-4">
                                         <div class="single-item">
@@ -238,9 +238,8 @@
                                     @endif
                                 @endforeach
                             </div>
-                            <div class="row">{{$product->appends(request()->input())->links()}}</div>
                         </div> <!-- .beta-products-list -->
-                    </div>
+
                 </div> <!-- end section with sidebar and main content -->
             </div> <!-- .main-content -->
         </div> <!-- #content -->

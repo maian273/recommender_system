@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,11 +25,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment whereUserId($value)
  * @mixin \Eloquent
  */
-class Rating extends Model
+class Comment extends Model
 {
-    protected $table = "ratings";
+    protected $table = "comments";
 
-    protected $fillable = ['point'];
+    protected $fillable = ['content'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -45,10 +45,5 @@ class Rating extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
-    }
-
-    public function orderDetail()
-    {
-        return $this->belongsTo(OrderDetail::class, 'order_id', 'id');
     }
 }

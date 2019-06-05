@@ -1,9 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use predictionio\EngineClient;
+use Illuminate\Support\Facades\DB;
 /**
  * App\Product
  *
@@ -46,5 +47,31 @@ class Product extends Model
     }
     public function ratings(){
         return $this->hasMany(Rating::class);
+    }
+
+    public function getBestSeller($num){
+        $bestsell = DB::table('order_detail')
+            ->join('products','products.id', '=', 'order_detail.id_product')
+            ->select('products.*',
+                DB::raw('count(products.id)'))
+            ->groupBy('products.id','products.name','products.unit_price','products.promotion_price','products.image')
+            ->orderByRaw('count(products.id) DESC')
+            ->take($num)->get();
+        return $bestsell;    
+    }
+    public function getSuggestProducts($userId, $num) {
+        $engineClient = new EngineClient('http://localhost:8000');
+            $suggestItems = $engineClient->sendQuery(array('user' => $userId, 'num' => $num)); // Submit user
+            $itemArr = [];
+            if (!empty($suggestItems)) {
+                $items = $suggestItems['itemScores'];
+                if (!empty($items)) {
+                    foreach ($items as $item) {
+                        $itemArr[] = $item['item'];
+                    }
+                }
+            }
+            $suggests = Product::whereIn('id', $itemArr)->get();
+            return $suggests;
     }
 }

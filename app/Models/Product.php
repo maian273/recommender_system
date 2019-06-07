@@ -59,7 +59,8 @@ class Product extends Model
             ->take($num)->get();
         return $bestsell;    
     }
-    public function getSuggestProducts($userId, $num) {
+    public function getSuggestProducts($userId, $num) 
+    {
         $engineClient = new EngineClient('http://localhost:8000');
             $suggestItems = $engineClient->sendQuery(array('user' => $userId, 'num' => $num)); // Submit user
             $itemArr = [];

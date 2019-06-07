@@ -9,7 +9,10 @@ use App\Mail\OrderSuccess;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use predictionio\EventClient;
 use Cart;
+use Carbon\Carbon;
+
 class OrderController extends Controller
 {
     //
@@ -50,10 +53,25 @@ class OrderController extends Controller
             $order->id_product = $row->id;
             $order->quantity = $row->qty;
             $order->unit_price = $row->price;
-            $order->save();
+            if ($order->save()){
+                $this->sendEventServerBuy($tran->user_id, $row->id);
+            }
         }
         Cart::destroy();
         $this->ship($request, $tran->id);
-        return redirect('dat-hang')->with('thongbao','Cảm ơn bạn đã đặt hàng sản phẩm của chúng tôi!');
+        return redirect('')->with('thongbao','Cảm ơn bạn đã đặt hàng sản phẩm của chúng tôi! Hãy tiếp tục mua sắm');
+    }
+
+    public function sendEventServerBuy($userId, $productId) {
+           $accessKey = env('ACCESS_KEY');
+           $client = new EventClient($accessKey, 'http://localhost:7070'); //Event Server 
+           $client->createEvent([
+                'event' => 'buy',
+                'entityType' => 'user',
+                'entityId' => $userId,
+                'targetEntityType' => 'item',
+                'targetEntityId' => $productId,
+                'eventTime' => Carbon::now()->toIso8601String()
+            ]);
     }
 }

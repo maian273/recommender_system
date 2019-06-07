@@ -43,7 +43,7 @@ class ProductController extends Controller
             $suggests = Product::where('new',0)->take(4)->get();
         }
         $bestsell = $this->getBestSeller(4);
-        $sanphamtt = Product::where('id_type',$product->id_type)->where('id','<>',$product->id)->get();
+        $sanphamtt = Product::where('id_type',$product->id_type)->where('id','<>',$product->id)->take(12)->get();
         return view('site.product.chitiet',[
             'product' => $product,
             'sanphamtt' => $sanphamtt,

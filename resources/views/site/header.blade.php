@@ -39,6 +39,7 @@
                         <ul class="nav navbar-nav">
                             @if(Auth::check())
                             <li><a href="{{route('thaydoitk')}}"><i class="fa fa-user"></i>{{(Auth::user())->full_name}}</a></li>
+                            <li><a href="{{route('lichsu')}}"><i class="fa fa-star"></i>Lịch sử</a></li>
                             <li><a href="{{route('dangxuat')}}"><i class="fa fa-crosshairs"></i>Đăng xuất</a></li>
                             @else
                             <li><a href="{{route('dangnhap')}}"><i class="fa fa-lock"></i>Đăng nhập</a></li>

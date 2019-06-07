@@ -42,12 +42,11 @@ class TransactionController extends Controller
     }
 
     public function postChangeStatus($id, Request $request) {
-        $order_detail = OrderDetail::find($id);
-        $order = Order::find($order_detail->id_order);
+        $order = Order::find($id);
         $status = $request->status;
         $order->status = $status;
         $order->save();
-        return redirect('admin/transaction/changeStatus/'.$id)->with('thongbao', 'Cập nhật trạng thái thành công');
+        return redirect('admin/order/view')->with('thongbao', 'Cập nhật trạng thái thành công');
     }
     //xử lý thêm thông tin sản phẩm
     public function postAdd(Request $request){

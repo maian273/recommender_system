@@ -1,19 +1,6 @@
 @extends('site.layout')
 @section('content')
-    <div class="inner-header">
-        <div class="container">
-            <div class="pull-left">
-                <h6 class="inner-title">Thay đổi tài khoản</h6>
-            </div>
-            <div class="pull-right">
-                <div class="beta-breadcrumb">
-                    <a href="{{route('trangchu')}}">Trang chủ</a> / <span>Thay đổi tài khoản</span> / <a href="{{route('lichsu')}}">Lịch sử mua hàng</a>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-
+    
     <div class="container">
         <div id="content">
             <form action="" method="post" id="thaydoitk" class="beta-form-checkout">

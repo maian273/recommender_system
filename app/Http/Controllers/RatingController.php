@@ -46,7 +46,8 @@ class RatingController extends Controller
         return redirect($orderDetailID . '/chitiet')->with('messageRating', 'Success');
     }
 
-    public function sendEventServerRate($rating) {
+    public function sendEventServerRate($rating) 
+    {
         $accessKey = env('ACCESS_KEY');
         $client = new EventClient($accessKey, 'http://localhost:7070');
         $client->createEvent(array(

@@ -48,23 +48,9 @@
                                             class="fa fa-shopping-cart"></i></a>
                                 <div class="clearfix"></div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="space40">&nbsp;</div>
-                    <div class="woocommerce-tabs">
-                        <ul class="tabs">
-                            <li><a href="#tab-description">Mô tả</a></li>
-                        </ul>
-
-                        <div class="panel" id="tab-description">
-                            <p>{{$product->description}}</p>
-                        </div>
-
-                        @if(Auth::user())
                             @if($checkNotRated)
-                            <div class="well">
-                                <h4>Đánh giá sản phẩm<span class="glyphicon glyphicon-pencil"></span></h4>
+                            <div class="rate">
+                                <h6>Đánh giá sản phẩm<span class="glyphicon glyphicon-pencil"></span></h6>
                                 <form action="rating/{{$product->id}}" role="form" method="post">
                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                                     <div class="rate">
@@ -83,6 +69,20 @@
                                 </form>
                             </div>
                             @endif
+                        </div>
+                    </div>
+
+                    <div class="space40">&nbsp;</div>
+                    <div class="woocommerce-tabs">
+                        <ul class="tabs">
+                            <li><a href="#tab-description">Mô tả</a></li>
+                        </ul>
+
+                        <div class="panel" id="tab-description">
+                            <p>{{$product->description}}</p>
+                        </div>
+
+                        @if(Auth::user())
                             <div class="well">
                                 @if(session('message'))
                                     <div class="alert alert-success">
@@ -147,7 +147,21 @@
                                                     </p>
                                                 @endif
                                             </div>
-                                            <div class="single-item-caption">
+                                            <div>
+                                                <ul class="list-inline row">
+                                                    <li class="col-6">
+                                                        <span>{{number_format($row->rating_point)}}</span>
+                                                        <i class="fa fa-star" style="color: yellow" aria-hidden="true"></i>
+                                                        {{--<svg class="rate-and-comment" src="source/image/thumbs-up.svg">--}}
+                                                        <span>({{$row->rating_quantity}})</span>
+                                                    </li>
+                                                    <li class="col-6">
+                                                        <i class="fa fa-comments-o" style="color: #0e76a8" aria-hidden="true"></i>
+                                                        <span>({{$row->comment_quantity}})</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="single-item-caption" style="margin-bottom: 20px">
                                                 <a class="add-to-cart pull-left" product_id="{{$row->id}}"><i
                                                             class="fa fa-shopping-cart"></i></a>
                                                 <a class="beta-btn primary" href="{{route('chitiet',$row->id)}}">Details

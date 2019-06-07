@@ -65,7 +65,7 @@
                     </div>
                     <div class="formSubmit">
                         <input type="submit" id="add" value="CẬP NHẬT" class="redB" />
-                        <input type="reset" value="Hủy bỏ" class="basic" />
+                        <input type="reset" id="reset" value="Hủy bỏ" class="basic" />
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -73,4 +73,14 @@
         </form>
     </div>
     <div class="clear mt30"></div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $('#reset').on('click', function(e){
+                e.preventDefault();
+                window.location.href = 'admin/order/view';
+            });
+        })
+    </script>
 @endsection

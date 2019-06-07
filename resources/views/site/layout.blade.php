@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="source/assets/dest/css/animate.css">
     <link rel="stylesheet" href="source/assets/dest/css/error.css">
     <link rel="stylesheet" href="source/assets/dest/css/jquery-confirm.min.css">
-
+    <link rel="stylesheet" href="source/assets/dest/css/rating.css">
 </head>
 <body>
 

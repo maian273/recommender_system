@@ -23,6 +23,20 @@
                                     </p>
                                 @endif
                             </div>
+                            <div>
+                                <ul class="list-inline row" style="max-width: 250px; margin-left: 10px;">
+                                    <li class="col-6">
+                                        <span>{{number_format($product->rating_point)}}</span>
+                                        <i class="fa fa-star" style="color: yellow" aria-hidden="true"></i>
+                                        {{--<svg class="rate-and-comment" src="source/image/thumbs-up.svg">--}}
+                                        <span>({{$product->rating_quantity}})</span>
+                                    </li>
+                                    <li class="col-6">
+                                        <i class="fa fa-comments-o" style="color: #0e76a8" aria-hidden="true"></i>
+                                        <span>({{$product->comment_quantity}})</span>
+                                    </li>
+                                </ul>
+                            </div>
 
                             <div class="clearfix"></div>
                             <div class="space20">&nbsp;</div>
@@ -34,23 +48,9 @@
                                             class="fa fa-shopping-cart"></i></a>
                                 <div class="clearfix"></div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="space40">&nbsp;</div>
-                    <div class="woocommerce-tabs">
-                        <ul class="tabs">
-                            <li><a href="#tab-description">Mô tả</a></li>
-                        </ul>
-
-                        <div class="panel" id="tab-description">
-                            <p>{{$product->description}}</p>
-                        </div>
-
-                        @if(Auth::user())
                             @if($checkNotRated)
-                            <div class="well">
-                                <h4>Đánh giá sản phẩm<span class="glyphicon glyphicon-pencil"></span></h4>
+                            <div class="rate">
+                                <h6>Đánh giá sản phẩm<span class="glyphicon glyphicon-pencil"></span></h6>
                                 <form action="rating/{{$product->id}}" role="form" method="post">
                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                                     <div class="rate">
@@ -69,6 +69,20 @@
                                 </form>
                             </div>
                             @endif
+                        </div>
+                    </div>
+
+                    <div class="space40">&nbsp;</div>
+                    <div class="woocommerce-tabs">
+                        <ul class="tabs">
+                            <li><a href="#tab-description">Mô tả</a></li>
+                        </ul>
+
+                        <div class="panel" id="tab-description">
+                            <p>{{$product->description}}</p>
+                        </div>
+
+                        @if(Auth::user())
                             <div class="well">
                                 @if(session('message'))
                                     <div class="alert alert-success">
@@ -90,9 +104,6 @@
                         @foreach($product->comments as $comment)
                             <!-- Comment -->
                                 <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                                    </a>
                                     <div class="media-body">
                                         <h7 class="media-heading">{{$comment->user->full_name}}
                                             <small>{{$comment->created_at}}</small>
@@ -136,7 +147,21 @@
                                                     </p>
                                                 @endif
                                             </div>
-                                            <div class="single-item-caption">
+                                            <div>
+                                                <ul class="list-inline row">
+                                                    <li class="col-6">
+                                                        <span>{{number_format($row->rating_point)}}</span>
+                                                        <i class="fa fa-star" style="color: yellow" aria-hidden="true"></i>
+                                                        {{--<svg class="rate-and-comment" src="source/image/thumbs-up.svg">--}}
+                                                        <span>({{$row->rating_quantity}})</span>
+                                                    </li>
+                                                    <li class="col-6">
+                                                        <i class="fa fa-comments-o" style="color: #0e76a8" aria-hidden="true"></i>
+                                                        <span>({{$row->comment_quantity}})</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="single-item-caption" style="margin-bottom: 20px">
                                                 <a class="add-to-cart pull-left" product_id="{{$row->id}}"><i
                                                             class="fa fa-shopping-cart"></i></a>
                                                 <a class="beta-btn primary" href="{{route('chitiet',$row->id)}}">Details
@@ -153,10 +178,10 @@
                 </div>
                 <div class="col-sm-3 aside">
                     <div class="widget">
-                        <h3 class="widget-title">Sản phẩm bán chạy</h3>
+                        <h3 class="widget-title">Các sản phẩm gợi ý</h3>
                         <div class="widget-body">
                             <div class="beta-sales beta-lists">
-                                @foreach($bestsell as $row)
+                                @foreach($suggests as $row)
                                     <div class="media beta-sales-item">
                                         <a class="pull-left" href="{{route('chitiet',['id' => $row->id])}}"><img
                                                     src="source/image/product/{{$row->image}}" alt=""></a>
@@ -176,10 +201,10 @@
                         </div>
                     </div> <!-- best sellers widget -->
                     <div class="widget">
-                        <h3 class="widget-title">Sản phẩm mới</h3>
+                        <h3 class="widget-title">Sản phẩm bán chạy</h3>
                         <div class="widget-body">
                             <div class="beta-sales beta-lists">
-                                @foreach($new_product as $row)
+                                @foreach($bestsell as $row)
                                     <div class="media beta-sales-item">
                                         <a class="pull-left" href="{{route('chitiet',['id' => $row->id])}}"><img
                                                     src="source/image/product/{{$row->image}}" alt=""></a>

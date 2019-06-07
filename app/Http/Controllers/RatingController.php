@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Rating;
-use App\Product;
-use App\OrderDetail;
+use App\Models\Rating;
+use App\Models\Product;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use predictionio\EventClient;
@@ -30,12 +30,26 @@ class RatingController extends Controller
     public function create(Request $request, $orderDetailID)
     {
         $rating = new Rating();
-        $accessKey = 'I-Jma9h9LaDSC0FxHBblpUnoKmJgzwye-OOcU3WKxRLlYyoSuqlme7iSpp-1pv48';
-        $client = new EventClient($accessKey, 'http://localhost:7070');
         $rating->user_id = Auth::id();
-        $rating->point = $request->get('rate');
+        $rating->point = (float)$request->get('rate');
         $rating->product_id = $orderDetailID;
         $product = Product::query()->find($orderDetailID);
+        if ($rating->save()) {
+            $this->sendEventServerRate($rating);
+            $quatity = $product->rating_quantity;
+            $point = $product->rating_point;
+            $product->rating_quantity += 1;
+            $update_point = ($quatity*$point + $rating->point)/$product->rating_quantity;
+            $product->rating_point = $update_point;
+            $product->save();
+        }
+        return redirect($orderDetailID . '/chitiet')->with('messageRating', 'Success');
+    }
+
+    public function sendEventServerRate($rating) 
+    {
+        $accessKey = env('ACCESS_KEY');
+        $client = new EventClient($accessKey, 'http://localhost:7070');
         $client->createEvent(array(
             'event' => 'rate',
             'entityType' => 'user',
@@ -45,70 +59,6 @@ class RatingController extends Controller
             'properties' => array('rating'=> $rating->point),
             'eventTime' => Carbon::now()->toIso8601String()
         ));
-        if ($rating->save()) {
-            $quatity = $product->rating_quantity;
-            $point = $product->rating_point;
-            $product->rating_quantity += 1;
-            $update_point = ($quatity*$point + $rating->point)/$product->rating_quantity;
-            $product->rating_point = $update_point;
-            $product->save();
-        }
-        return redirect($orderDetailID . '/chitiet')->with('message', 'Success');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

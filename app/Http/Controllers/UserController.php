@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Cart;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class UserController extends Controller
         return view('site.user.dangky');
     }
     //
-    public function postDangKy(Request $request){
+    public function postRegister(Request $request){
         $user = new User();
         $user->full_name = $request->fullname;
         $user->email = $request->email;
@@ -28,13 +28,13 @@ class UserController extends Controller
         return redirect('dang-ky')->with('thongbao','Đăng ký tài khoản thành công');
     }
     //
-    public function getDangNhap(Request $request){
+    public function getLogin(Request $request){
         if($request->url()!=url()->previous())
         Session::put('url',url()->previous());
         return view('site.user.dangnhap');
     }
     //
-    public function postDangNhap(Request $request){
+    public function postLogin(Request $request){
         if(Auth::attempt(['email' =>$request->email,'password' => $request->password])){
             //return redirect()->intended('index')->with('thongbao','Đăng nhập thành công');
             $url = Session::get('url');
@@ -52,19 +52,19 @@ class UserController extends Controller
         }
         return json_encode(TRUE);
     }
-    public function getDangXuat(Request $request){
+    public function getLogout(Request $request){
         Auth::logout();
         Cart::destroy();
         return redirect(url()->previous())->with('thongbao','Đăng xuất thành công');
     }
     //
-    public function getThayDoiTK(){
+    public function getChangeAcc(){
         return view('site.user.thaydoitaikhoan',[
             'user' => Auth::user()
         ]);
     }
     //
-    public function postThayDoiTK(Request $request){
+    public function postChangeAcc(Request $request){
         $user = Auth::user();
         $user->full_name = $request->fullname;
         $user->phone = $request->phone;
@@ -75,7 +75,7 @@ class UserController extends Controller
         return redirect('thay-doi-tai-khoan')->with('thongbao','Thay đổi tài khoản thành công');
     }
 
-    public function getLichSu() {
+    public function getHistory() {
         $user = Auth::user();
         $orders = $order_detail = DB::table('order_detail')
             ->join('products','products.id', '=', 'order_detail.id_product')

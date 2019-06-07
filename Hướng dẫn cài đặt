@@ -10,5 +10,17 @@ Do đây là project Laravel nên yêu cầu cần cài đặt:
 	-	Bật IDE và import project
 	-	Chạy lệnh php artisan server
 	-	Chạy composer update
-	-	Vào csdl và import các bảng từ file skyphone.sql
-	-	Chạy project trên trình duyệt ở cổng 8000
+	-	Vào csdl và import các bảng từ file .sql
+	-	Chạy project trên trình duyệt ở cổng 8001: php artisan serv
+	
+3. Cài đặt PredictionIO theo hướng dẫn 
+	https://predictionio.apache.org/install/ 
+	Bật server lên ở cổng 7070
+	pio eventserver
+4. Cài đặt template theo hướng dẫn
+	https://predictionio.apache.org/templates/ecommercerecommendation/quickstart/
+	Bật server lên cổng 8000
+	pio build --verbose
+	pio train
+	pio deploy
+	

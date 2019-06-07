@@ -2,8 +2,8 @@
 
 namespace App\Mail;
 
-use App\Order;
-use App\User;
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;

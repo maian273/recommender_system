@@ -1,18 +1,5 @@
 @extends('site.layout')
 @section('content')
-<div class="inner-header">
-    <div class="container">
-        <div class="pull-left">
-            <h6 class="inner-title">Đặt hàng</h6>
-        </div>
-        <div class="pull-right">
-            <div class="beta-breadcrumb">
-                <a href="{{route('trangchu')}}">Trang chủ</a> / <span>Đặt hàng</span>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-</div>
 
 <div class="container">
     <div id="content">

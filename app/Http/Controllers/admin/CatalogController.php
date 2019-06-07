@@ -8,9 +8,9 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Catalog;
+use App\Models\Catalog;
 use App\Http\Controllers\Controller;
-use App\Product;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CatalogController extends Controller
